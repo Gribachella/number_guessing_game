@@ -153,7 +153,7 @@ while True:
             continue
         elif int(num) == secret_num:
             if secret_num == 727:
-                print(f'Попытка №{attempts}: https://osu.ppy.sh/scores/356910737')
+                print(f'Попытка №{attempts}: https://osu.ppy.sh/scores/453746931')
             elif attempts == 1:
                 print(f'Попытка №{attempts}: {choice(total_win_notices)}')
             elif attempts < long_game:
