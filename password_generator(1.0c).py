@@ -229,6 +229,7 @@ def get_password_charset(charset, ambiguous_include, space_include, user_charset
 
     while True:
         combine = charset + user_charset
+        full_combine = get_processed_alphabet(combine, 'full')
         clear_console()
 
         tips('alphabet')
@@ -272,14 +273,20 @@ def get_password_charset(charset, ambiguous_include, space_include, user_charset
         elif answer == "9":
             return charset, ambiguous_include, space_include, user_charset
 
-        if not charset + user_charset:
+        if not (charset + user_charset):
             space_include, ambiguous_include = False, False
         else:
-            for c in ambiguous:
+            for c in ambiguous:  # Проверка на наличие в алфавите хотя бы одного из символов в строке ambiguous
                 if c in get_processed_alphabet(charset + user_charset, 'full'):
                     break
             else:
                 ambiguous_include = False
+
+            for c in full_combine:  # Проверка состоит ли текущий алфавит исключительно из символов строки ambiguous
+                if c not in ambiguous:
+                    break
+            else:
+                ambiguous_include = True
 
 # Ф-ия, возвращающая длину пароля выбранную пользователем
 def get_password_length():
