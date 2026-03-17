@@ -221,7 +221,7 @@ def edit_user_charset(user_charset_index, user_charset, charset):
         clear_console()
         tips('edit charset')
 
-        print(f'ИСХОДНЫЙ НАБОР >>> {''.join(user_charset_index)}', end='\n\n')
+        print(f'ИСХОДНЫЙ НАБОР >>> {"".join(user_charset_index)}', end="\n\n")
 
         new_charset = input('ИЗМЕНЕННЫЙ НАБОР >>> ').replace(" ", '')
         processed_charset = ''
