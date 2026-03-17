@@ -376,7 +376,7 @@ def main_menu(length, charset, user_charset, quantity):
     print(f'2) Алфавит пароля: {short_alpha} - {len(uniq_symbols)} уникальных символов')
     print(f'3) Количество: {quantity}', end='\n\n')
 
-    print(f'Вариативность пароля: {len(full_alpha) ** length}', end='\n\n')
+    print(f'Вариативность пароля: {len(uniq_symbols) ** length}', end='\n\n')
     print(f'4) Сгенерировать парол{ending}')
     print('5) Выход')
     print('=' * 79)
