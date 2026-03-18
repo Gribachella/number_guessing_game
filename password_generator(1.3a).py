@@ -468,7 +468,7 @@ while True:
     answer = input(">>> ").strip()
 
     while not is_valid_digit_answer(answer, 1, 5):
-        main_menu(password_len, charset, user_charset, password_quantity)
+        main_menu(password_len, charset, user_charset, password_quantity, space_include, ambiguous_include)
         answer = input(">>> ").strip()
 
     if answer == '1':
