@@ -41,6 +41,7 @@ def get_password(length, charset, user_charset, ambiguous, ambiguous_include, sp
 
     if space_include:
         finally_password_alphabet += ' '
+        uniq_charsets += [[' ']]
 
     finally_password_alphabet = list(finally_password_alphabet)
     
