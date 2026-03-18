@@ -96,9 +96,6 @@ def tips(option):
         print("стандартного набора алфавита пароля включенными.") 
         print("- При желании расширить алфавит пароля учитывайте локальную политику паролей.")
         print("- [СН] - Стандартный набор.")
-        print("- Выключая опцию №6 неоднозначные символы будут исключенны из алфавита")
-        print("пароля в момент генерации пароля, поэтому исключенные неоднозначные")
-        print("символы все еще смогут отображаться как ВКЛЮЧЕНЫЕ в алфавит в меню.")
         print(f"{'=' * 77}\n")
     
     elif option == 'user`s charset':
@@ -415,7 +412,7 @@ def get_entropy_case(length, alphabet):
         return 'Гроверорезистентный пароль'
 
 # Главное меню программы
-def main_menu(length, charset, user_charset, quantity):
+def main_menu(length, charset, user_charset, quantity, space_include, ambiguous_include):
     clear_console()
 
     full_alpha, short_alpha = get_processed_alphabet(charset + user_charset)
@@ -424,6 +421,12 @@ def main_menu(length, charset, user_charset, quantity):
     for sym in full_alpha:
         if sym not in uniq_symbols:
             uniq_symbols += sym
+    
+    if space_include:
+        uniq_symbols += ' '
+    if not ambiguous_include:
+        for sym in '0Ooi1lI':
+            uniq_symbols = uniq_symbols.replace(sym, '')
 
     if charset + user_charset:
         entropy = round(length * log2(len(uniq_symbols)), 2)
@@ -438,7 +441,7 @@ def main_menu(length, charset, user_charset, quantity):
 
     print(f'{"=" * 31}ГЕНЕРАТОР ПАРОЛЕЙ{"=" * 31}')
     print(f'1) Длина пароля: {length}')
-    print(f'2) Алфавит пароля: {short_alpha} - {len(uniq_symbols)} уникальных символов')
+    print(f"2) Алфавит пароля: {short_alpha}{' + [\" \"]' if space_include else ''} - {len(uniq_symbols)} уникальных символов")
     print(f'3) Количество: {quantity}', end='\n\n')
 
     print(f'Энтропия пароля: {entropy} бит {"" if not entropy else f"- {entropy_case}"}', end='\n\n')
@@ -460,7 +463,7 @@ password_len, password_quantity = 14, 5
 
 # Основной цикл программы
 while True:
-    main_menu(password_len, charset, user_charset, password_quantity)
+    main_menu(password_len, charset, user_charset, password_quantity, space_include, ambiguous_include)
 
     answer = input(">>> ").strip()
 
