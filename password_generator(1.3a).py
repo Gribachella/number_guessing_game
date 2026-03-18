@@ -26,7 +26,7 @@ def get_uniq_charsets(charset, user_charset):
 
     return uniq_charsets
 
-# Функция генерации пароля + проверка на предмет содержания в пароле максимально возможного количества символов из уникальных групп символов
+# Функция генерации пароля + проверка на предмет максимально возможного включения в содержание пароля всех уникальных групп символов
 def get_password(length, charset, user_charset, ambiguous, ambiguous_include, space_include):
     uniq_charsets = get_uniq_charsets(charset, user_charset)
     full_password_alphabet = ''.join(get_processed_alphabet(uniq_charsets, 'full'))
