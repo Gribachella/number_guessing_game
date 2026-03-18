@@ -185,6 +185,14 @@ def filter_charset(charset, set):
 
 # Ф-ия добавления в пользовательский список наборов символов свой набор символов
 def add_user_charset(user_charset, charset):
+    digits = [str(n) for n in range(0, 10)]
+    lowercase_letters = [chr(c) for c in range(97, 123)]
+    uppercase_letters = [chr(c) for c in range(65, 91)]
+    spec_chars = list('!#$%&*+-=?@^_')
+    spec_chars_expanded = list("'\"(),./:;<>[\\]`{|}~")
+    ambiguous = '0Ooi1lI'
+    standard_set = [digits] + [lowercase_letters] + [uppercase_letters] + [sorted(spec_chars)] + [sorted(spec_chars_expanded)] + [sorted(list(ambiguous))]
+
     while True:
         clear_console()
 
@@ -206,11 +214,24 @@ def add_user_charset(user_charset, charset):
             print("Такой набор символов уже есть в алфавите пароля.")
             input('>>> ')
             continue
+        elif sorted(proced_charset) in standard_set:
+            clear_console()
+            print("Такой набор символов можно выбрать в меню алфавита пароля.")
+            input('>>> ')
+            continue
 
         return list(processed_charset)
 
 # Ф-ия редактирования набора символов в пользовательском списке наборов символов
 def edit_user_charset(user_charset_index, user_charset, charset):
+    digits = [str(n) for n in range(0, 10)]
+    lowercase_letters = [chr(c) for c in range(97, 123)]
+    uppercase_letters = [chr(c) for c in range(65, 91)]
+    spec_chars = list('!#$%&*+-=?@^_')
+    spec_chars_expanded = list("'\"(),./:;<>[\\]`{|}~")
+    ambiguous = '0Ooi1lI'
+    standard_set = [digits] + [lowercase_letters] + [uppercase_letters] + [sorted(spec_chars)] + [sorted(spec_chars_expanded)] + [sorted(list(ambiguous))]
+
     while True:
         clear_console()
         tips('edit charset')
@@ -232,6 +253,11 @@ def edit_user_charset(user_charset_index, user_charset, charset):
         if is_charset_in_alphabet(proced_charset, charset + user_charset) and proced_charset != user_charset_index:
             clear_console()
             print("Такой набор символов уже есть в алфавите пароля.")
+            input('>>> ')
+            continue
+        elif sorted(proced_charset) in standard_set:
+            clear_console()
+            print("Такой набор символов можно выбрать в меню алфавита пароля.")
             input('>>> ')
             continue
 
