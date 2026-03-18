@@ -404,9 +404,9 @@ def get_entropy_case(length, alphabet):
         return 'Слабый пароль'
     elif 50 <= entropy < 82:
         return 'Средний пароль'
-    elif 82 <= entropy < 128:
+    elif 82 <= entropy < 120:
         return 'Сильный пароль'
-    elif 128 <= entropy < 256:
+    elif 120 <= entropy < 256:
         return 'Очень сильный пароль'
     else:
         return 'Гроверорезистентный пароль'
