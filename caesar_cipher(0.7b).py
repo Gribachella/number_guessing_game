@@ -84,7 +84,7 @@ def is_valid_digit_answer(answer, x1, x2):
         return False
 
 def is_valid_string_answer(answer, format='yesno'):
-    if answer.isalpha:
+    if answer.isalpha():
         if format == 'yesno':
             return answer in 'lf l da d y yes ye да д нет не н net ne n no ytn yt'.split()
         else:
